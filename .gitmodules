@@ -1,0 +1,4 @@
+[submodule "haoutil"]
+	path = haoutil
+	url = https://bitbucket.org/kafan15536900/haoutil.git
+	branch = master

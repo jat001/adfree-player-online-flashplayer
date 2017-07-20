@@ -1,0 +1,11 @@
+env:
+  - NAME=jat001/archisteamfarm
+
+install:
+  - git submodule update --init --remote
+
+before_script:
+  - git diff --exit-code && travis_terminate 0
+
+script:
+  - echo 'test'
