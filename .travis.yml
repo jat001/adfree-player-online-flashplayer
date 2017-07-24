@@ -1,8 +1,13 @@
 install:
   - git submodule update --remote
-
-before_script:
   - git diff --exit-code && travis_terminate 0
 
+  - wget -O qshell http://devtools.qiniu.com/2.0.9/qshell-linux-x64
+  - chmod +x qshell
+
+before_script:
+  - ./qshell account $QINIU_AK $QINIU_SK
+  - sed -i "s/#QINIU_BUCKET#/$QINIU_BUCKET/" .qupload.json
+
 script:
-  - echo 'test'
+  - travis_retry ./qshell qupload $(find haoutil/player/testmod/ -maxdepth 1 -type f | wc -l) .qupload.json
