@@ -9,4 +9,4 @@ before_script:
   - git submodule update --remote
 
 script:
-  - travis_retry ./qshell qupload $(find haoutil/player/testmod/ -maxdepth 1 -type f | wc -l) .qupload.json
+  - travis_retry ./qshell qupload $(find haoutil/player/testmod/ -name '*.swf' -maxdepth 1 | wc -l) .qupload.json
