@@ -1,11 +1,15 @@
 #!/bin/bash
 # author: chat@jat.email
 
-git submodule update --init --remote
-
 HOSTSITE=${HOSTSITE:-127.0.0.1}
 HOSTSITE=${HOSTSITE%/}
 [ "${HOSTSITE:0:4}" != 'http' ] && HOSTSITE="http://$HOSTSITE"
+
+git submodule update --init --remote
+mkdir lists
+
+./qshell account "$QINIU_AK" "$QINIU_SK"
+sed -i "s/#QINIU_BUCKET#/$QINIU_BUCKET/" .qupload.json
 
 i=1
 while :; do
