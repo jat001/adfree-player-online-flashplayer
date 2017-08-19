@@ -13,7 +13,7 @@ sed -i "s/#QINIU_BUCKET#/$QINIU_BUCKET/" .qupload.json
 
 i=1
 while :; do
-    ./qshell qupload -success-list lists/success_$i.txt "$(find haoutil/player/testmod/ -name '*.swf' -maxdepth 1 | wc -l)" .qupload.json && break
+    ./qshell qupload -success-list lists/success_$i.txt "$(find haoutil/player/testmod/ -maxdepth 1 -name '*.swf' | wc -l)" .qupload.json && break
     ((i++))
 done
 
